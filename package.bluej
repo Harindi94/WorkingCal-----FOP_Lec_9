@@ -1,46 +1,280 @@
-#BlueJ package file
-editor.fx.0.height=830
-editor.fx.0.width=787
-editor.fx.0.x=-5
-editor.fx.0.y=0
-objectbench.height=114
-objectbench.width=761
-package.divider.horizontal=0.6
-package.divider.vertical=0.7595693779904306
-package.editor.height=375
-package.editor.width=674
-package.editor.x=318
-package.editor.y=11
-package.frame.height=600
-package.frame.width=800
-package.numDependencies=0
-package.numTargets=3
-package.showExtends=true
-package.showUses=true
-project.charset=UTF-8
-readme.height=60
-readme.name=@README
-readme.width=49
-readme.x=10
-readme.y=10
-target1.height=70
-target1.name=WorkingCal
-target1.showInterface=false
-target1.type=ClassTarget
-target1.width=120
-target1.x=10
-target1.y=110
-target2.height=70
-target2.name=CalcGUI
-target2.showInterface=false
-target2.type=ClassTarget
-target2.width=120
-target2.x=80
-target2.y=10
-target3.height=70
-target3.name=Calculator
-target3.showInterface=false
-target3.type=ClassTarget
-target3.width=120
-target3.x=230
-target3.y=10
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class WorkingCal extends JFrame implements ActionListener, KeyListener{
+  //
+  JPanel panelTop;
+  JPanel panelLeft;
+  JPanel panelRight;
+  JPanel panelBottom;
+  //
+  JTextField calcDisplay;
+  //
+  JButton buttonOne;
+  JButton buttonTwo;
+  JButton buttonThree;
+  JButton buttonFour;
+  JButton buttonFive;
+  JButton buttonSix;
+  JButton buttonSeven;
+  JButton buttonEight;
+  JButton buttonNine;
+  JButton buttonZero;
+  JButton buttonSign;
+  JButton buttonDot;
+  JButton buttonEqual;
+  //
+  JButton buttonAdd;
+  JButton buttonSub;
+  JButton buttonMul;
+  JButton buttonDiv;
+  JButton buttonFac;
+  //
+  JButton buttonBackspace;
+  JButton buttonClear;
+  JButton buttonOpenBracket;
+  JButton buttonCloseBracket;
+  JButton buttonOff;
+  //
+  String expression="";
+  
+  /**
+   * Constructor for objects of class CalcGUI
+   */
+  public WorkingCal(){
+      super("My PROG 5001 Calculator");
+      setPreferredSize(new Dimension(400,400));
+      setLayout(null);
+      //
+      panelTop = new JPanel();
+      panelTop.setBackground(Color.green);
+      panelTop.setBounds(20,15,360,35);
+      add(panelTop);
+      //
+      panelBottom = new JPanel();
+      panelBottom.setBackground(Color.red);
+      panelBottom.setBounds(20,63,360,300);
+      add(panelBottom);
+      //
+      calcDisplay = new JTextField();
+      calcDisplay.setPreferredSize(new Dimension(350,25));
+      panelTop.add(calcDisplay);
+      //
+      buttonOne = new JButton("1");
+      buttonOne.setActionCommand("CMD_One");
+      buttonOne.addActionListener(this);
+      //   
+      buttonTwo = new JButton("2");
+      buttonTwo.setActionCommand("CMD_Two");
+      buttonTwo.addActionListener(this);
+      //
+      buttonThree = new JButton("3");
+      buttonThree.setActionCommand("CMD_Three");
+      buttonThree.addActionListener(this);
+      //
+      buttonFour = new JButton("4");
+      buttonFour.setActionCommand("CMD_Four");
+      buttonFour.addActionListener(this);
+      //
+      buttonFive = new JButton("5");
+      buttonFive.setActionCommand("CMD_Five");
+      buttonFive.addActionListener(this);
+      //
+      buttonSix = new JButton("6");
+      buttonSix.setActionCommand("CMD_Six");
+      buttonSix.addActionListener(this);
+      //
+      buttonSeven = new JButton("7");
+      buttonSeven.setActionCommand("CMD_Seven");
+      buttonSeven.addActionListener(this);
+      //
+      buttonEight = new JButton("8");
+      buttonEight.setActionCommand("CMD_Eight");
+      buttonEight.addActionListener(this);
+      //
+      buttonNine = new JButton("9");
+      buttonNine.setActionCommand("CMD_Nine");
+      buttonNine.addActionListener(this);
+      //
+      buttonZero = new JButton("0");
+      buttonZero.setActionCommand("CMD_Zero");
+      buttonZero.addActionListener(this);
+      //
+      buttonDot = new JButton(".");
+      buttonDot.setActionCommand("CMD_Dot");
+      buttonDot.addActionListener(this);
+      //
+      buttonSign = new JButton("+/-");
+      buttonSign.setActionCommand("CMD_Sign");
+      buttonSign.addActionListener(this);
+      //
+      buttonEqual = new JButton("=");
+      buttonEqual.setActionCommand("CMD_Equal");
+      buttonEqual.addActionListener(this);
+      //
+      buttonAdd = new JButton("+");
+      buttonAdd.setActionCommand("CMD_Add");
+      buttonAdd.addActionListener(this);
+      //
+      buttonSub = new JButton("-");
+      buttonSub.setActionCommand("CMD_Sub");
+      buttonSub.addActionListener(this);
+      //
+      buttonMul = new JButton("*");
+      buttonMul.setActionCommand("CMD_Mul");
+      buttonMul.addActionListener(this);
+      //
+      buttonDiv = new JButton("/");
+      buttonDiv.setActionCommand("CMD_Div");
+      buttonDiv.addActionListener(this);
+      //
+      buttonFac = new JButton("!");
+      buttonFac.setActionCommand("CMD_Fac");
+      buttonFac.addActionListener(this);
+      //
+      buttonBackspace = new JButton("<<");
+      buttonBackspace.setActionCommand("CMD_Backspace");
+      buttonBackspace.addActionListener(this);
+      //
+      buttonClear = new JButton("C");
+      buttonClear.setActionCommand("CMD_EqualClear");
+      buttonClear.addActionListener(this);
+      //
+      buttonOpenBracket = new JButton("(");
+      buttonOpenBracket.setActionCommand("CMD_OpenBracket");
+      buttonOpenBracket.addActionListener(this);
+      //
+      buttonCloseBracket = new JButton(")");
+      buttonCloseBracket.setActionCommand("CMD_CloseBracket");
+      buttonCloseBracket.addActionListener(this);
+      //
+      buttonOff = new JButton("OFF");
+      buttonOff.setActionCommand("CMD_Off");
+      buttonOff.addActionListener(this);
+      //
+      panelBottom.add(buttonOne);
+      panelBottom.add(buttonTwo);
+      panelBottom.add(buttonThree);
+      panelBottom.add(buttonFour);
+      panelBottom.add(buttonFive);
+      panelBottom.add(buttonSix);
+      panelBottom.add(buttonSeven);
+      panelBottom.add(buttonEight);
+      panelBottom.add(buttonNine);
+      panelBottom.add(buttonZero);
+      panelBottom.add(buttonDot);
+      panelBottom.add(buttonSign);
+      panelBottom.add(buttonEqual);
+      //
+      panelBottom.add(buttonAdd);
+      panelBottom.add(buttonSub);
+      panelBottom.add(buttonMul);
+      panelBottom.add(buttonDiv);
+      panelBottom.add(buttonFac);
+      //
+      panelBottom.add(buttonBackspace);
+      panelBottom.add(buttonClear);
+      panelBottom.add(buttonOpenBracket);
+      panelBottom.add(buttonCloseBracket);
+      panelBottom.add(buttonOff);
+      //
+      setDefaultCloseOperation(EXIT_ON_CLOSE);
+      setPreferredSize(new Dimension(400,300));
+      pack();
+      //
+      setFocusable(true);
+      addKeyListener(this);
+  }
+  
+  public void actionPerformed(ActionEvent e) {
+      String cmd = e.getActionCommand();
+      if (cmd.equals("CMD_One")){
+          expression = expression + "1";
+      }else
+      if (cmd.equals("CMD_Two")){
+          expression = expression + "2";
+      }else
+      if (cmd.equals("CMD_Three")){
+         expression = expression + "3";
+     }else
+      if (cmd.equals("CMD_Four")){
+          expression = expression + "4";
+      }else
+      if (cmd.equals("CMD_Five")){
+         expression = expression + "5";
+     }else
+      if (cmd.equals("CMD_Six")){
+         expression = expression + "6";
+      }else
+     if (cmd.equals("CMD_Seven")){
+         expression = expression + "7";
+     }else
+      if (cmd.equals("CMD_Eight")){
+          expression = expression + "8";
+      }else
+      if (cmd.equals("CMD_Nine")){
+          expression = expression + "9";
+      }else
+      if (cmd.equals("CMD_Zero")){
+          expression = expression + "0";
+      }else
+      if (cmd.equals("CMD_Dot")){
+          expression = expression + ".";
+      }else
+      if (cmd.equals("CMD_Sign")){
+          expression = expression + "+/-";
+      }else
+      if (cmd.equals("CMD_Equal")){
+          expression = expression + "=";
+      }else
+      if (cmd.equals("CMD_Add")){
+          expression = expression + "+";
+      }else
+      if (cmd.equals("CMD_Sub")){
+          expression = expression + "-";
+      }else
+      if (cmd.equals("CMD_Mul")){
+          expression = expression + "*";
+      }else
+      if (cmd.equals("CMD_Div")){
+          expression = expression + "/";
+      }else
+      if (cmd.equals("CMD_Fac")){
+          expression = expression + "!";
+      }else
+      if (cmd.equals("CMD_Backspace")){
+          expression = expression + "<<";
+      }else
+      if (cmd.equals("CMD_EqualClear")){
+          expression = expression + "C";
+      }else
+      if (cmd.equals("CMD_OpenBracket")){
+          expression = expression + "(";
+      }else
+      if (cmd.equals("CMD_CloseBracket")){
+          expression = expression + ")";
+      }else
+      if (cmd.equals("CMD_Off")){
+          expression = expression + "OFF";
+      }
+     calcDisplay.setText(expression);
+}
+  
+  public void keyPressed(KeyEvent e) {
+      int key = e.getKeyCode();
+      if (key == KeyEvent.VK_BACK_SPACE)
+         System.out.println("Backspace was pressed"+ e.getKeyCode());
+  }
+  
+  public void keyReleased(KeyEvent e){
+  }
+  
+  public void keyTyped(KeyEvent e){
+  }
+  
+  public static void main (String[] args){
+      WorkingCal gui = new WorkingCal();
+      gui.setVisible(true);
+  }
+}
